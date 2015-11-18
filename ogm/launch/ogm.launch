@@ -1,0 +1,10 @@
+<launch>
+
+    <node pkg="ogm" type="ogm_node" name="ogm_noed" output="screen">
+
+        
+
+    </node>
+
+
+</launch>
