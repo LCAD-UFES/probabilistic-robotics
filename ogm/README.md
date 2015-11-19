@@ -2,6 +2,7 @@
 
 
 Probabilistic Robotics - Algorithms Implementations
+
 Thrun, Sebastian; Burgard, Wolfram and Fox, Dieter. Probabilistic Robotics, MIT Press, 2005, ISBN 0262201623, 9780262201629. Cap. 9, pg 206, Table 9.1
 
 ## How to use:
@@ -26,7 +27,9 @@ After, in other terminal
      $ roslaunch ogm ogmJoy.launch
 
   if you want control with keyboard
+
      $ roslaunch ogm ogm.launch
+
    keep focus on terminal window to input the arrow commands
 
 
