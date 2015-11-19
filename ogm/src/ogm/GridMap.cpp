@@ -25,7 +25,7 @@ GridMap::GridMap(ros::NodeHandle &private_nh) : cells(nullptr), grid_mutex(), se
     size = width*height;
 
     // range max
-    private_nh.param("grid_map_range_max", range_max, 5.0);
+    private_nh.param("grid_map_range_max", range_max, 15.0);
 
     // resolution
     private_nh.param("grid_map_resolution", resolution, 0.05);
@@ -166,10 +166,8 @@ void GridMap::inverse_sensor_model(MapCell *cell, const sensor_msgs::LaserScanCo
     }
 
     // verify the update cases
-//    if (cell->dist <= range + alpha2 && angle <= beta2 && range <= range_max) { //Verificar se eh necessario outro teste
-    if (cell->dist <= range + alpha2 && angle <= beta2) { //Retirada a limitacao do range para incluir todas as celulas mesmo obstaculo
+   if (cell->dist <= range + alpha2 && angle <= beta2 && range <= range_max) {
 
-        //
         if (fabs(cell->dist - range) <= alpha2) {
 
             if (100 > cell->status) {
