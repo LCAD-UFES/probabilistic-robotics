@@ -15,11 +15,12 @@ Clone the project in your workspace (e.g. $catkin_ws/src/)
     $ catkin_make
 
 ### Running:
-Bring up gazebo simulation, rviz use:
+Bring up gazebo simulation and rviz:
 
     $ roslaunch ogm simulation.launch
 
 After, in other terminal
+
   if you want control with joystick:
 
      conect the joystick
