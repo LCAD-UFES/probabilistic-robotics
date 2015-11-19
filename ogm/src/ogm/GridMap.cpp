@@ -166,7 +166,8 @@ void GridMap::inverse_sensor_model(MapCell *cell, const sensor_msgs::LaserScanCo
     }
 
     // verify the update cases
-    if (cell->dist <= range + alpha2 && angle <= beta2 && range <= range_max) {
+//    if (cell->dist <= range + alpha2 && angle <= beta2 && range <= range_max) { //Verificar se eh necessario outro teste
+    if (cell->dist <= range + alpha2 && angle <= beta2) { //Retirada a limitacao do range para incluir todas as celulas mesmo obstaculo
 
         //
         if (fabs(cell->dist - range) <= alpha2) {
