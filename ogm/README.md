@@ -7,6 +7,8 @@ Thrun, Sebastian; Burgard, Wolfram and Fox, Dieter. Probabilistic Robotics, MIT 
 
 ## How to use:
 
+Obs: You need the PioneerModel to use the simulation environment
+
 Clone the project in your workspace (e.g. $catkin_ws/src/)
 
     $ cd ~/catkin_ws/src
@@ -21,7 +23,7 @@ Bring up gazebo simulation and rviz:
 
 After, in other terminal
 
-  if you want control with joystick:
+  if you want control with joystick (with joy node):
 
      conect the joystick
      $ sudo chmod 777 /dev/input/js0
@@ -32,5 +34,7 @@ After, in other terminal
      $ roslaunch ogm ogm.launch
 
    keep focus on terminal window to input the arrow commands
+
+Drive around and enjoy the map discovery :)
 
 
