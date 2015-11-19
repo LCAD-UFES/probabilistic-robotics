@@ -32,8 +32,7 @@ After, in other terminal
   if you want control with keyboard
 
      $ roslaunch ogm ogm.launch
-
-   keep focus on terminal window to input the arrow commands
+     Note: keep focus on terminal window to input the arrow commands
 
 Drive around and enjoy the map discovery :)
 
