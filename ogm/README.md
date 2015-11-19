@@ -16,17 +16,17 @@ Clone the project in your workspace (e.g. $catkin_ws/src/)
 ### Running:
 Bring up gazebo simulation, rviz use:
 
-   $ roslaunch ogm simulation.launch
+    $ roslaunch ogm simulation.launch
 
 After, in other terminal
   if you want control with joystick:
-	conect the joystick
-	$ sudo chmod 777 /dev/input/js0
-	$ roslaunch ogm ogmJoy.launch
+
+     conect the joystick
+     $ sudo chmod 777 /dev/input/js0
+     $ roslaunch ogm ogmJoy.launch
 
   if you want control with keyboard
-
-   $ roslaunch ogm ogm.launch
+     $ roslaunch ogm ogm.launch
    keep focus on terminal window to input the arrow commands
 
 
