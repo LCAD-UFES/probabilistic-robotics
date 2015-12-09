@@ -33,6 +33,9 @@ GridMap::GridMap(ros::NodeHandle &private_nh) : cells(nullptr), grid_mutex(), se
     // update the limit displacement
     displacement = range_max/resolution;
 
+    // update the inverse resolution
+    inverse_resolution = 1.0/resolution;
+
     // the alpha2 parameter
     private_nh.param("grid_map_alpha_2", alpha2, resolution*0.75);
 
@@ -86,8 +89,8 @@ void GridMap::updateGridMap(const geometry_msgs::Pose& pose, const sensor_msgs::
 
     int leftLimit, rigthLimit, downLimit, upLimit;
 
-    int x_map = std::floor((pose.position.x - origin_x)/resolution + 0.5) + width2;
-    int y_map = std::floor((pose.position.y - origin_y)/resolution + 0.5) + height2;
+    int x_map = std::floor((pose.position.x - origin_x)*inverse_resolution + 0.5) + width2;
+    int y_map = std::floor((pose.position.y - origin_y)*inverse_resolution + 0.5) + height2;
 
     leftLimit = x_map - displacement;
     if (0 > leftLimit) {
@@ -174,7 +177,7 @@ void GridMap::inverse_sensor_model(MapCell *cell, const sensor_msgs::LaserScanCo
 
                 if (-20 < cell->status) {
 
-                    cell->status += 20;
+                    cell->status += 30;
 
                 } else {
 
@@ -194,7 +197,7 @@ void GridMap::inverse_sensor_model(MapCell *cell, const sensor_msgs::LaserScanCo
 
                 } else {
 
-                    cell->status -= 5;
+                    cell->status -= 2;
 
                 }
 
@@ -208,9 +211,6 @@ void GridMap::inverse_sensor_model(MapCell *cell, const sensor_msgs::LaserScanCo
 
 // draw the map
 void GridMap::exportGridMap(nav_msgs::OccupancyGrid &occupancy) {
-
-    // lock the map
-//     grid_mutex.lock();
 
     // set the sequence
     occupancy.header.seq = seq;
@@ -247,11 +247,11 @@ void GridMap::exportGridMap(nav_msgs::OccupancyGrid &occupancy) {
     // copy the cells
     for (int i = 0; i < size; i++) {
 
-        if (0 < cells[i].status) {
+        if (20 < cells[i].status) {
 
             occupancy.data[i] = 100;
 
-        } else if (-5 > cells[i].status) {
+        } else if (-10 > cells[i].status) {
 
             occupancy.data[i] = 0;
 
@@ -261,9 +261,6 @@ void GridMap::exportGridMap(nav_msgs::OccupancyGrid &occupancy) {
 
         }
     }
-
-    // unlock the map
-//     grid_mutex.unlock();
 
     return;
 }

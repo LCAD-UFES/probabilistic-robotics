@@ -41,12 +41,14 @@ OccupancyGridMapping::OccupancyGridMapping() :
 // our main callback
 void OccupancyGridMapping::update(const nav_msgs::OdometryConstPtr& odom, const sensor_msgs::LaserScanConstPtr& ls) {
 
-    // verify the difference between the Odometry and the LaserScan
-    if (odom->twist.twist.angular.z > 0.01) {
+    // verify if there's angular velocity
+    if (std::fabs(odom->twist.twist.angular.z) > 0.01) {
+        // verify the difference between the Odometry and the LaserScan
         if ((odom->header.stamp - ls->header.stamp) <= ros::Duration(max_ol_angular_time_factor/((int) 10*odom->twist.twist.angular.z))) {
             gm.updateGridMap(odom->pose.pose, ls);
         }
     } else {
+        // verify the difference between the Odometry and the LaserScan
         if ((odom->header.stamp - ls->header.stamp) <= max_ol_translational_time) {
             gm.updateGridMap(odom->pose.pose, ls);
         }

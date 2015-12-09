@@ -27,7 +27,7 @@ class GridMap {
         int width2, height2;
 
         // the grid resolution
-        double resolution;
+        double resolution, inverse_resolution;
 
         // the grid origin
         double origin_x, origin_y, orientation;
