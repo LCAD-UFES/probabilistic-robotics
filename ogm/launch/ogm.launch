@@ -1,18 +1,11 @@
 <launch>
 
-<!--Map TF-->
-    <node 
-	name="static_tf" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 map odom 100">
-    </node>
-    <node 
-	name="mover" pkg="p3dx_controller" type="mover.py">
-    </node>
-	
-	
-<!--Ocuppancy grid mapping node-->
-    <node pkg="ogm" type="ogm_node" name="ogm_node" output="screen">
+    <!--Map TF-->
+    <node name="static_tf" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 map odom 100"/>
 
-   </node>
+    <!-- keyboard arrows -->
+    <node name="mover" pkg="p3dx_controller" type="mover.py" />
 
-
+    <!--Ocuppancy grid mapping node-->
+    <node pkg="ogm" type="ogm_node" name="ogm_node" output="screen" />
 </launch>

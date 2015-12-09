@@ -25,7 +25,7 @@ GridMap::GridMap(ros::NodeHandle &private_nh) : cells(nullptr), grid_mutex(), se
     size = width*height;
 
     // range max
-    private_nh.param("grid_map_range_max", range_max, 5.0);
+    private_nh.param("grid_map_range_max", range_max, 15.0);
 
     // resolution
     private_nh.param("grid_map_resolution", resolution, 0.05);
@@ -174,7 +174,7 @@ void GridMap::inverse_sensor_model(MapCell *cell, const sensor_msgs::LaserScanCo
 
                 if (-20 < cell->status) {
 
-                    cell->status += 10;
+                    cell->status += 20;
 
                 } else {
 
@@ -190,7 +190,7 @@ void GridMap::inverse_sensor_model(MapCell *cell, const sensor_msgs::LaserScanCo
 
                 if (0 > cell->status) {
 
-                    cell->status -= 10;
+                    cell->status -= 5;
 
                 } else {
 
@@ -247,11 +247,11 @@ void GridMap::exportGridMap(nav_msgs::OccupancyGrid &occupancy) {
     // copy the cells
     for (int i = 0; i < size; i++) {
 
-        if (20 < cells[i].status) {
+        if (0 < cells[i].status) {
 
             occupancy.data[i] = 100;
 
-        } else if (-20 > cells[i].status) {
+        } else if (-5 > cells[i].status) {
 
             occupancy.data[i] = 0;
 

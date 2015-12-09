@@ -12,7 +12,7 @@ OccupancyGridMapping::OccupancyGridMapping() :
 
     // the max laser and odometry diff time
     double tmp;
-    private_nh.param("max_diff_odom_laser_diff_time", tmp, 0.5);
+    private_nh.param("max_odom_laser_diff_time", tmp, 0.5);
     max_ol_translational_time = ros::Duration(tmp);
 
     // max angular time
