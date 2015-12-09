@@ -13,19 +13,19 @@ GridMap::GridMap(ros::NodeHandle &private_nh) : cells(nullptr), grid_mutex(), se
     private_nh.param("grid_map_width", width, 4000);
 
     // update width2
-    width2 = width/2;
+    width2 = width >> 1;
 
     // the height
     private_nh.param("grid_map_height", height, 4000);
 
     // update the height2
-    height2 = height/2;
+    height2 = height >> 1;
 
     // updates the grid map array size
     size = width*height;
 
     // range max
-    private_nh.param("grid_map_range_max", range_max, 15.0);
+    private_nh.param("grid_map_range_max", range_max, 5.0);
 
     // resolution
     private_nh.param("grid_map_resolution", resolution, 0.05);
@@ -171,22 +171,35 @@ void GridMap::inverse_sensor_model(MapCell *cell, const sensor_msgs::LaserScanCo
         if (fabs(cell->dist - range) <= alpha2) {
 
             if (100 > cell->status) {
+
                 if (-20 < cell->status) {
+
                     cell->status += 10;
+
                 } else {
+
                     cell->status += 5;
+
                 }
+
             }
 
         } else if (cell->dist < range) {
 
             if (-100 < cell->status) {
+
                 if (0 > cell->status) {
+
                     cell->status -= 10;
+
                 } else {
+
                     cell->status -= 1;
+
                 }
+
             }
+
         }
 
     }

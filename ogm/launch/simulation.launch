@@ -15,7 +15,7 @@
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
         <arg name="world_name" value="$(find p3dx_gazebo)/worlds/p3dx.world" />
         <arg name="debug" value="$(arg debug)" />
-        <arg name="gui" value="true" />
+        <arg name="gui" value="false" />
         <arg name="paused" value="$(arg paused)" />
         <arg name="use_sim_time" value="$(arg use_sim_time)" />
         <arg name="headless" value="$(arg headless)" />

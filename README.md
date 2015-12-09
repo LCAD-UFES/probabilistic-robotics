@@ -1,6 +1,7 @@
 # probabilistic-robotics
 Probabilistic Robotics - Algorithms Implementations
 
-This repository is to be used in Probabilistic Robotics discipline in PPGI-UFES.
-The packages here are under construction. 
-When they are ready to be used correctly, they will become a separate git project.
+This repository is intended to be used in Probabilistic Robotics course in PPGI-UFES.
+The packages presented here are still under construction and they are not supposed to be used in a production environment.
+If some package became mature enough then it will be transfered to a separate project. 
+

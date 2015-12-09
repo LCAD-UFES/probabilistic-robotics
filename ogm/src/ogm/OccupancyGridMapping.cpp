@@ -25,7 +25,11 @@ OccupancyGridMapping::OccupancyGridMapping() :
     map_pub = nh.advertise<nav_msgs::OccupancyGrid>(map_topic, 1);
 
     // Occupancy data
-    occupancy.data.resize(4000*4000);
+    int w, h;
+    private_nh.param("grid_map_width", w, 4000);
+
+    private_nh.param("grid_map_height", h, 4000);
+    occupancy.data.resize(w*h);
 
     // register the callback function to the current sync policy
     sync.registerCallback(boost::bind(&OccupancyGridMapping::update, this, _1, _2));
@@ -57,6 +61,7 @@ void OccupancyGridMapping::publishOccupancyGridMapping() {
     map_pub.publish<nav_msgs::OccupancyGrid>(occupancy);
 
     return;
+
 }
 
 // the run method, just to spin around
