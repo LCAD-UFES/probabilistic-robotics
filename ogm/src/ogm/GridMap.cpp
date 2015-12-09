@@ -190,11 +190,11 @@ void GridMap::inverse_sensor_model(MapCell *cell, const sensor_msgs::LaserScanCo
 
                 if (0 > cell->status) {
 
-                    cell->status -= 5;
+                    cell->status -= 10;
 
                 } else {
 
-                    cell->status -= 1;
+                    cell->status -= 5;
 
                 }
 
